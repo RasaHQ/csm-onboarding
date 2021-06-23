@@ -1,0 +1,32 @@
+version: "2.0"
+
+stories:
+
+- story: welcome user
+  steps:
+  - intent: greet
+  - action: utter_greet
+
+- story: get training information
+  steps:
+  - intent: train_topics
+  - action: utter_training_topics
+
+- story: check balance (no account type)
+  steps:
+  - intent: check_balance
+  - action: utter_account_balance
+
+- story: check balance (has account type)
+  steps:
+  - intent: check_balance
+    entities:
+      - account_type
+  - slot_was_set:
+      - account_type: bank
+  - action: action_account_balance
+
+- story: bot challenge
+  steps:
+  - intent: bot_challenge
+  - action: utter_iamabot
